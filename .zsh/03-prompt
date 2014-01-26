@@ -1,0 +1,37 @@
+#!/bin/zsh
+#
+# vi-mode colour changing
+#   http://www.zsh.org/mla/users/2006/msg01196.html
+
+
+sep=${sep_color}
+
+dir="${dir_color}%30<...<%~${sep}"
+user="${user_color}%n${sep}"
+
+if ! host_is_localhost; then
+    longhost="${host_color}%M"
+fi
+shorthost="${host_color}%m${sep}"
+
+if tty_is_vt; then
+    term="${term_color}%l${shlvl}${sep}|"
+elif tty_is_screen; then
+    term="${term_color}$WINDOW${shlvl}${sep}|" # fixme
+else
+    if [ $SHLVL -gt 1 ]; then
+        term="${shlvl}${sep}|"
+    fi
+fi
+
+histno="${histno_color}%!${sep}"
+isroot="${lastc_color}%#"
+
+end="${reset}"
+
+PS1="${sep}[${term}${user}@${shorthost}:${dir}]${isroot}${end} "
+
+rst="%{%b%s%u$reset_color%}"
+bgc="%{%(?.$rst.%S)%}"
+
+colors_cleanup

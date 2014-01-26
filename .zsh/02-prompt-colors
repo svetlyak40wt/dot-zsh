@@ -1,0 +1,86 @@
+setopt prompt_subst
+autoload colors
+colors
+
+esc=""
+b="%{"
+e="%}"
+delete_function=unfunction
+
+black0="${b}${esc}[0;30m${e}"
+red0="${b}${esc}[0;31m${e}"
+green0="${b}${esc}[0;32m${e}"
+yellow0="${b}${esc}[0;33m${e}"
+blue0="${b}${esc}[0;34m${e}"
+cyan0="${b}${esc}[0;35m${e}"
+aqua0="${b}${esc}[0;36m${e}"
+white0="${b}${esc}[0;37m${e}"
+case "$TERM" in
+xterm*)
+    # xterm supports more then 8 colors
+    black1="${b}${esc}[90m${e}"
+    red1="${b}${esc}[91m${e}"
+    green1="${b}${esc}[92m${e}"
+    yellow1="${b}${esc}[93m${e}"
+    blue1="${b}${esc}[94m${e}"
+    cyan1="${b}${esc}[95m${e}"
+    aqua1="${b}${esc}[96m${e}"
+    white1="${b}${esc}[97m${e}"
+    ;;
+*)
+    # otherwise make text bold
+    black1="${b}${esc}[1;30m${e}"
+    red1="${b}${esc}[1;31m${e}"
+    green1="${b}${esc}[1;32m${e}"
+    yellow1="${b}${esc}[1;33m${e}"
+    blue1="${b}${esc}[1;34m${e}"
+    cyan1="${b}${esc}[1;35m${e}"
+    aqua1="${b}${esc}[1;36m${e}"
+    white1="${b}${esc}[1;37m${e}"
+    ;;
+esac
+reset="${b}${esc}[0m${e}"
+clln="${b}${esc}[K${e}"
+
+if test -z "${black_and_white}"; then
+    sep_color=${black1}
+    regular_user_color=${green0}
+    root_color=${red1}
+    term_color=${aqua1}
+    shlvl_color=${term_color}
+    local_color=${aqua0}
+    remote_color=${cyan0}
+    dir_color=${blue1}
+    histno_color=${yellow0}
+    lastc_color=${white1}
+fi
+
+if uid_is_0; then
+    user_color=${root_color}
+else
+    user_color=${regular_user_color}
+fi
+
+if host_is_localhost; then
+    host_color=${local_color}
+else
+    host_color=${remote_color}
+fi
+
+shlvl=${shlvl_color}
+i=1
+while :; do
+    [ $i -ge $SHLVL ] && break # AFAIR $SHLVL declareed in UNIX98
+    shlvl="${shlvl}+"
+    i=$(expr $i + 1) # maybe there is easier way
+done
+unset i
+
+colors_cleanup () {
+    unset black0 red0 green0 yellow0 blue0 cyan0 aqua0 white0
+    unset black1 red1 green1 yellow1 blue1 cyan1 aqua1 white1
+    unset reset clln
+    unset sep_color regular_user_color root_color user_color term_color
+    unset local_color remote_color dir_color histno_color lastc_color
+    ${delete_function:-:} colors_cleanup
+}

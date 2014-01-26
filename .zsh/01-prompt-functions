@@ -1,0 +1,29 @@
+uid_is_0() {
+    return $UID
+}
+
+tty_short() {
+    tty | sed -e 's,^/dev/,, ; s,^tty,,'
+}
+
+tty_is_vt() {
+    case `tty` in
+    /dev/tty[0-9]|/dev/tty[0-9][0-9]|/dev/vc/*|/dev/ttyv*)
+        return 0;;
+    esac
+    return 1
+} # Not tested
+
+tty_is_screen() {
+    test "$TERM" = "screen"
+}
+
+host_is_localhost() {
+    if [ -n "$SSH_CLIENT" ]; then return 1; fi
+    if [ -n "$SSH2_CLIENT" ]; then return 1; fi
+    if [ -n "$SSH_TTY" ]; then return 1; fi
+
+    if w -h 2>&1 | grep "`tty_short`" | grep -q sshd; then return 1; fi
+
+    return 0
+}
