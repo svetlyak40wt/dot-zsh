@@ -12,4 +12,6 @@ go and install [dotfiler][], then clone this repository, using
 `dot add <url>` command and run `dot update` to make all necessary
 symlinks.
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/svetlyak40wt/dot-zsh/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 [dotfiler]: https://github.com/svetlyak40wt/dotfiler
