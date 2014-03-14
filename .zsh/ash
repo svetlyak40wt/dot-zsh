@@ -8,10 +8,9 @@ function a()
  
     if [ -e .commands ]; then
         source .commands
-        while [ -n "$1" ]; do
-            $1 || return $!
-            shift
-        done
+        COMMAND=$1
+        shift
+        $COMMAND $@ || return $!
     else
         echo 'File ".commands" not found.'
     fi
