@@ -17,3 +17,5 @@ alias llth='ll -t | head'
 alias lla='ll -a'
 
 alias history-refresh='fc -RI'
+
+alias i=invoke
