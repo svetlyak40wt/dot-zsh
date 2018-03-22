@@ -19,3 +19,13 @@ alias lla='ll -a'
 alias history-refresh='fc -RI'
 
 alias i=invoke
+
+alias gen-ssh-config='cat ~/.ssh/config.d/* > ~/.ssh/config'
+alias gen-hosts='sudo bash -c "cat /etc/hosts.d/* > /etc/hosts"'
+
+# create a new dir
+# and change current dir to it
+function mk () {
+    mkdir -p "$1"
+    cd "$1"
+}
