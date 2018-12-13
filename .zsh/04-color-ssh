@@ -1,3 +1,5 @@
+# Source: https://coderwall.com/p/t7a-tq/change-terminal-color-when-ssh-from-os-x
+
 function tabc() {
   NAME=$1; if [ -z "$NAME" ]; then NAME="Default"; fi
   # if you have trouble with this, change
