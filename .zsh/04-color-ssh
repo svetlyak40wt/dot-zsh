@@ -17,12 +17,12 @@ function colorssh() {
         trap "tab-reset" INT EXIT
         if [[ "$*" =~ "prod*" ]]; then
             tabc Production
-        elif [[ "$*" =~ "qa*" ]]; then
+        elif [[ "$*" =~ "internal-qa*" ]]; then
             tabc Production
         elif [[ "$*" =~ "test*" ]]; then
             tabc Testing
         else
-            tabc Default
+            tabc Dev
         fi
     fi
     ssh $*

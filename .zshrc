@@ -26,3 +26,4 @@ bindkey -e
 
 
 test -f ~/.zshrc_local && source ~/.zshrc_local
+
