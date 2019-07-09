@@ -19,6 +19,8 @@ function colorssh() {
             tabc Production
         elif [[ "$*" =~ "internal-qa*" ]]; then
             tabc Production
+        elif [[ "$*" =~ "shell.directory.workspace" ]]; then
+            tabc Production
         elif [[ "$*" =~ "test*" ]]; then
             tabc Testing
         else
