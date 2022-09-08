@@ -27,3 +27,10 @@ bindkey -e
 
 test -f ~/.zshrc_local && source ~/.zshrc_local
 
+
+# The next line updates PATH for Yandex Cloud CLI.
+if [ -f '/Users/art/yandex-cloud/path.bash.inc' ]; then source '/Users/art/yandex-cloud/path.bash.inc'; fi
+
+# The next line enables shell command completion for yc.
+if [ -f '/Users/art/yandex-cloud/completion.zsh.inc' ]; then source '/Users/art/yandex-cloud/completion.zsh.inc'; fi
+
