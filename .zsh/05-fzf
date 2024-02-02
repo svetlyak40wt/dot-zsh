@@ -1,0 +1,5 @@
+# Enable fzf autocompletion and shortcuts
+# if they available:
+# https://github.com/junegunn/fzf
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
