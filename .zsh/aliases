@@ -29,3 +29,7 @@ function mk () {
     mkdir -p "$1"
     cd "$1"
 }
+
+# To show process names set by changing of /proc/self/comm
+alias pss='ps -o pid,psr,pcpu,pmem,rss,stat,comm,args'
+alias pssa='pss -e'
