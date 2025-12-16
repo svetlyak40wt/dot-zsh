@@ -31,4 +31,5 @@ function colorssh() {
 }
 compdef _ssh tabc=ssh
 
-alias ssh="colorssh"
+# Commented because seems it breaks teminal often and I have to exec 'reset' command:
+# alias ssh="colorssh"
